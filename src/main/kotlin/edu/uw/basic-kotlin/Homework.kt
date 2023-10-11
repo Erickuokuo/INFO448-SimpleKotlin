@@ -48,37 +48,36 @@ class Money(var amount: Int, var currency: String) {
         require(currency in setOf("USD", "EUR", "CAN", "GBP")) { "Invalid currency." }
     }
     fun convert(targetCurrency: String): Money {
-        val conversionRate = when (currency) {
+        val convertedAmount = when (currency) {
             "USD" -> when (targetCurrency) {
-                "GBP" -> 0.5
-                "EUR" -> 0.75
-                "CAN" -> 0.8333
-                else -> 1.0
+                "GBP" -> amount / 2
+                "EUR" -> amount * 3 / 2
+                "CAN" -> amount * 5 / 4
+                else -> amount
             }
             "GBP" -> when (targetCurrency) {
-                "USD" -> 2.0
-                "EUR" -> 1.5
-                "CAN" -> 1.6666
-                else -> 1.0
+                "USD" -> amount * 2
+                "EUR" -> amount * 3
+                "CAN" -> amount * 5 / 2
+                else -> amount
             }
             "EUR" -> when (targetCurrency) {
-                "USD" -> 1.3333
-                "GBP" -> 0.6666
-                "CAN" -> 1.1111
-                else -> 1.0
+                "USD" -> amount * 2 / 3
+                "GBP" -> amount / 3
+                "CAN" -> amount * 5 / 6
+                else -> amount
             }
             "CAN" -> when (targetCurrency) {
-                "USD" -> 1.2
-                "GBP" -> 0.6
-                "EUR" -> 0.9
-                else -> 1.0
+                "USD" -> amount * 4 / 5
+                "GBP" -> amount * 2 / 5
+                "EUR" -> amount * 6 / 5
+                else -> amount
             }
-            else -> 1.0
+            else -> amount
         }
-
-        val convertedAmount = (amount / conversionRate).toInt()
         return Money(convertedAmount, targetCurrency)
     }
+
 
     operator fun plus(other: Money): Money {
         if (currency == other.currency) {
