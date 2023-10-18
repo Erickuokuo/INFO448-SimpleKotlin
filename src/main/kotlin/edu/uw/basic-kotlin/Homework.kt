@@ -9,17 +9,22 @@ class Library {
 }
 
 // write a "whenFn" that takes an arg of type "Any" and returns a String
-    fun whenFn(args: Any): String {
+fun whenFn(args: Any): String {
     return when (args) {
         "Hello" -> "world"
-        is String -> "I don't understand"
+        is String -> {
+            when (args) {
+                "Howdy", "Bonjour" -> "Say what?"
+                else -> "I don't understand"
+            }
+        }
         0 -> "zero"
         1 -> "one"
         in 2..10 -> "low number"
-        is Number -> "a number"
+        is Int -> "a number"
         else -> "I don't understand"
     }
-    }
+}
 
     // write an "add" function that takes two Ints, returns an Int, and adds the values
     fun add(a: Int, b: Int): Int {

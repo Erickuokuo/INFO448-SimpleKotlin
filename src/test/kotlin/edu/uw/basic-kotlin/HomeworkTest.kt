@@ -18,10 +18,10 @@ class HomeworkTest {
         assertEquals(whenFn("Hello"), "world")
     }
     @Test fun when_Howdy() {
-        assertEquals(whenFn("Howdy"), "I don't understand")
+        assertEquals(whenFn("Howdy"), "Say what?")
     }
     @Test fun when_Bonjour() {
-        assertEquals(whenFn("Bonjour"), "I don't understand")
+        assertEquals(whenFn("Bonjour"), "Say what?")
     }
     @Test fun when_ints() {
         val when_tests = listOf(
@@ -29,7 +29,7 @@ class HomeworkTest {
             1 to "one",
             5 to "low number",
             9 to "low number",
-            17.0 to "a number"
+            17.0 to "I don't understand"
         )
         for ((k,v) in when_tests) {
             assertEquals(whenFn(k), v)
